@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}Update PROFILE{% endblock title %}
+{% block content %}
+
+    <h3>Change Password</h3>
+
+    <form method = "post" action = "" novalidate>
+        
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% for fm in form %}
+        {{% fm.label_tag %}}{{ fm }} {{ fm.errors|striptags }}
+        {% endfor %}
+        
+        <input type = "submit" value = "Change password" class ="btn btn-primary"/>
+    
+    </form>
+
+{% endblock content %}
